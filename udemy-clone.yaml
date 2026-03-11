@@ -1,0 +1,1185 @@
+type: spec.insomnia.rest/5.0
+schema_version: "5.1"
+name: Udemy - learning management system
+meta:
+  id: wrk_1f30e09d5ee046cb91b78d8f7a5ff481
+  created: 1768738825388
+  modified: 1768746882897
+  description: ""
+collection:
+  - name: UDEMY
+    meta:
+      id: fld_41f63e4834c14e358897b0d23bac5f7c
+      created: 1768743441668
+      modified: 1768743441668
+      sortKey: -1768743441668
+      description: ""
+    children:
+      - name: Admin
+        meta:
+          id: fld_9a211abd8a1b4c5383f8986faf5fa3ca
+          created: 1768743453110
+          modified: 1773255094926
+          sortKey: -1768743457426
+          description: ""
+        children:
+          - name: Category
+            meta:
+              id: fld_4200e1e2752e458490073a6080783963
+              created: 1770754958385
+              modified: 1770754958385
+              sortKey: -1770754958385
+              description: ""
+            children:
+              - url: http://localhost:5000/api/admin/categories/
+                name: "Add "
+                meta:
+                  id: req_adcb725e8b2b43538879d98bf14666dc
+                  created: 1769103498015
+                  modified: 1773253443440
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770754992065
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"name" : "Mobile",
+                    	"description" : "mobile",
+                    	"parentId" : 1
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzI1MzM4MCwiZXhwIjoxNzczMjU2OTgwfQ.w5CyIP6KbqPwMkuyFZfsSGFZlF4gEaYuigb410hx_is
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/admin/categories
+                name: Get All
+                meta:
+                  id: req_19953f1099d4482a8041eff36242462d
+                  created: 1770661220240
+                  modified: 1773253480556
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770754991965
+                method: GET
+                parameters:
+                  - name: page
+                    value: "0"
+                    description: ""
+                    disabled: false
+                  - name: limit
+                    value: "5"
+                    description: ""
+                    disabled: false
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzI1MzM4MCwiZXhwIjoxNzczMjU2OTgwfQ.w5CyIP6KbqPwMkuyFZfsSGFZlF4gEaYuigb410hx_is
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/admin/categories/2
+                name: Put
+                meta:
+                  id: req_1267589c83f44ad6b109b2b725ae9e86
+                  created: 1770662992013
+                  modified: 1771529379517
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770754991865
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"parentId" : 1
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MTUyODIzOCwiZXhwIjoxNzcxNTMxODM4fQ.A1OLaOw78OYDIzfYIHw9ue1NFwyDYjD94jCIOwqcY-4
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/admin/categories/2
+                name: Get One
+                meta:
+                  id: req_9e28fec7c36b4d058bcf7f21488baf0a
+                  created: 1770754803427
+                  modified: 1771528375038
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770754991765
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MTUyODIzOCwiZXhwIjoxNzcxNTMxODM4fQ.A1OLaOw78OYDIzfYIHw9ue1NFwyDYjD94jCIOwqcY-4
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/admin/categories/6
+                name: Delete
+                meta:
+                  id: req_ac41643248a8496fa0c5be4838f201c2
+                  created: 1770754894323
+                  modified: 1771529001769
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770754991815
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MTUyODIzOCwiZXhwIjoxNzcxNTMxODM4fQ.A1OLaOw78OYDIzfYIHw9ue1NFwyDYjD94jCIOwqcY-4
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: User
+            meta:
+              id: fld_3c16c9998dd54fb693cd37186e331d2b
+              created: 1773096928701
+              modified: 1773096928701
+              sortKey: -1773096928701
+              description: ""
+            children:
+              - url: http://localhost:5000/api/admin/users
+                name: Get All User With Role
+                meta:
+                  id: req_e875b9df261c49acb6b06ca393f0effe
+                  created: 1773096940477
+                  modified: 1773097020217
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773096940477
+                method: GET
+                parameters:
+                  - name: role
+                    value: INSTRUCTOR
+                    description: ""
+                    disabled: false
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.3.1
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzA5Njg2NSwiZXhwIjoxNzczMTAwNDY1fQ.v8RVNAMz9X-dVbbSQ9J9WZ4A8ucf7pGaiCPVBcKVP0I
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/admin/users/2
+                name: Get User Detail
+                meta:
+                  id: req_70e0ba34b7c141248754c9bf60ab82c5
+                  created: 1773097058301
+                  modified: 1773097268407
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773097058301
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.3.1
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzA5Njg2NSwiZXhwIjoxNzczMTAwNDY1fQ.v8RVNAMz9X-dVbbSQ9J9WZ4A8ucf7pGaiCPVBcKVP0I
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Course
+            meta:
+              id: fld_5675ba13c99d4a94b66a46d12446d169
+              created: 1773255114405
+              modified: 1773255114405
+              sortKey: -1773255114405
+              description: ""
+            children:
+              - url: http://localhost:5000/api/admin/courses/16
+                name: Get One
+                meta:
+                  id: req_139a901dfa9748f4a0c7fe4c2e01da22
+                  created: 1773255123963
+                  modified: 1773255324592
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773255123963
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzI1NTE3NiwiZXhwIjoxNzczMjU4Nzc2fQ.kU8TPWVmf8gHznDOgXATkZhp73zUbQHIurN-PFsJYuo
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/admin/courses
+                name: Get All
+                meta:
+                  id: req_67a1a276050e49c29b99f70a7742db90
+                  created: 1773255133556
+                  modified: 1773255225614
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773255133556
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzI1NTE3NiwiZXhwIjoxNzczMjU4Nzc2fQ.kU8TPWVmf8gHznDOgXATkZhp73zUbQHIurN-PFsJYuo
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+      - name: Student
+        meta:
+          id: fld_0104d7832f1149b6b7bedae39989971a
+          created: 1768743476040
+          modified: 1773255388705
+          sortKey: -1768743476040
+          description: ""
+        children:
+          - name: Payment
+            meta:
+              id: fld_e8e8b381a01c4051a873a4ed8cc9d734
+              created: 1773255487813
+              modified: 1773255487813
+              sortKey: -1773255487813
+              description: ""
+            children:
+              - url: http://localhost:5000/api/student/payments/courses/16
+                name: Add
+                meta:
+                  id: req_0307c5b587f84d5ab28063e9040a5c89
+                  created: 1773255591293
+                  modified: 1773255915167
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773255591293
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: ""
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MzI1NTY5OCwiZXhwIjoxNzczMjU5Mjk4fQ.wZ06fiNbvjTGjOELRahd8pu4wBlCswP8be3bXl_bQmA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/student/payments/1
+                name: Put
+                meta:
+                  id: req_f208a755deb5442db2a784edbd90a3e0
+                  created: 1773255951937
+                  modified: 1773256209766
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773255951937
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"status" : "PAID"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MzI1NTY5OCwiZXhwIjoxNzczMjU5Mjk4fQ.wZ06fiNbvjTGjOELRahd8pu4wBlCswP8be3bXl_bQmA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/student/payments
+                name: Get All
+                meta:
+                  id: req_4862967b8e274933aaafca1968dde157
+                  created: 1773256266770
+                  modified: 1773256371202
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773256266770
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MzI1NTY5OCwiZXhwIjoxNzczMjU5Mjk4fQ.wZ06fiNbvjTGjOELRahd8pu4wBlCswP8be3bXl_bQmA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/student/payments/1
+                name: Delete
+                meta:
+                  id: req_430f8969f33c4d7381bf994120f75627
+                  created: 1773256281592
+                  modified: 1773256483921
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773256281592
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MzI1NTY5OCwiZXhwIjoxNzczMjU5Mjk4fQ.wZ06fiNbvjTGjOELRahd8pu4wBlCswP8be3bXl_bQmA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: My Courses
+            meta:
+              id: fld_ad81c87fff68448282f7f1cc0182ad33
+              created: 1773255504973
+              modified: 1773256607431
+              sortKey: -1773255504973
+              description: ""
+            children:
+              - url: http://localhost:5000/api/student/my-courses
+                name: Get All
+                meta:
+                  id: req_20a2c5fd47674103a446cbaf2aad850c
+                  created: 1773256584462
+                  modified: 1773256696797
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773256584462
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MzI1NTY5OCwiZXhwIjoxNzczMjU5Mjk4fQ.wZ06fiNbvjTGjOELRahd8pu4wBlCswP8be3bXl_bQmA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Lecture
+            meta:
+              id: fld_d9c7bc272b834882921cc644a9afd776
+              created: 1773257883378
+              modified: 1773257883378
+              sortKey: -1773257883378
+              description: ""
+            children:
+              - url: http://localhost:5000/api/student/lectures/27
+                name: Get One
+                meta:
+                  id: req_9a76244770b64de184fa1ebef4d7d9e6
+                  created: 1773257895439
+                  modified: 1773257972461
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773257895439
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MzI1NTY5OCwiZXhwIjoxNzczMjU5Mjk4fQ.wZ06fiNbvjTGjOELRahd8pu4wBlCswP8be3bXl_bQmA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+      - name: Media
+        meta:
+          id: fld_353afc144cd64ac4966c915444907250
+          created: 1770755296445
+          modified: 1773255436299
+          sortKey: -1771524663077
+          description: ""
+        children:
+          - url: http://localhost:5000/api/media/upload
+            name: Upload
+            meta:
+              id: req_af216e74ff7a4c28aa26cb0f91a51894
+              created: 1769082941696
+              modified: 1773254260077
+              isPrivate: false
+              description: ""
+              sortKey: -1770755320060
+            method: POST
+            body:
+              mimeType: multipart/form-data
+              params:
+                - name: file
+                  value: ""
+                  description: ""
+                  disabled: false
+                  fileName: C:\Users\Novruz\Downloads\Gysga
+                    filmler_1457f93d-11d8-4cac-bdf4-13f892503e63.mp4
+                  type: file
+            headers:
+              - name: Content-Type
+                value: multipart/form-data
+              - name: User-Agent
+                value: insomnia/12.1.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:5000/api/media/33
+            name: Delete
+            meta:
+              id: req_c4a392a5c48143378d7fc3dc082d413e
+              created: 1770755720465
+              modified: 1773259746235
+              isPrivate: false
+              description: ""
+              sortKey: -1770755720465
+            method: DELETE
+            parameters:
+              - name: type
+                value: image
+                description: ""
+                disabled: false
+            headers:
+              - name: User-Agent
+                value: insomnia/12.1.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Auth
+        meta:
+          id: fld_ff402bf3911c4f1195547a4b18104734
+          created: 1770755336118
+          modified: 1773255377798
+          sortKey: -1768743476140
+          description: ""
+        children:
+          - url: http://localhost:5000/api/auth/signup
+            name: Register
+            meta:
+              id: req_9ec11ea455314006a862c73c5f4b46c4
+              created: 1768738860028
+              modified: 1773253564706
+              isPrivate: false
+              description: ""
+              sortKey: -1770755342358
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name" : "Nowruz5",
+                	"email" : "nowruz5@gmail.com",
+                	"password" : "123456",
+                	"role" : "INSTRUCTOR" 
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/12.1.0
+                description: ""
+                disabled: true
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:5000/api/auth/login
+            name: Login
+            meta:
+              id: req_1c4233631b584b51a091be5a213374ca
+              created: 1768746914133
+              modified: 1773259585889
+              isPrivate: false
+              description: ""
+              sortKey: -1770755342408
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"email" : "nowruz5@gmail.com",
+                	"password" : "123456"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/12.1.0
+                description: ""
+                disabled: false
+            authentication:
+              type: bearer
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:5000/api/auth/me
+            name: Get Me
+            meta:
+              id: req_69c6b8fd39964e178d8ff33c15def25f
+              created: 1768750446946
+              modified: 1771528200213
+              isPrivate: false
+              description: ""
+              sortKey: -1770755342308
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/12.1.0
+                description: ""
+                disabled: false
+            authentication:
+              type: bearer
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc3MTUyODE1MiwiZXhwIjoxNzcxNTMxNzUyfQ.ZoO3H3DzsB_oyElxI5J-K45fXGQvFidXQEpACKvm7BQ
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Instructor
+        meta:
+          id: fld_d5bc01508d71429c893ab73856d27bfd
+          created: 1771524662977
+          modified: 1773255082261
+          sortKey: -1771524662977
+          description: ""
+        children:
+          - name: Course
+            meta:
+              id: fld_cb8e13579c2f4e56a52e36c35f2079d5
+              created: 1770761146195
+              modified: 1771524757258
+              sortKey: -1771524757224
+              description: ""
+            children:
+              - url: http://localhost:5000/api/instructor/courses
+                name: Add
+                meta:
+                  id: req_a826e1797f4349e884c9361d42c06c86
+                  created: 1770761150237
+                  modified: 1773253795341
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770761150237
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: >-
+                    {
+                    	"title" : "React js",
+                    	"slug" : "react js",
+                    	"description" : "This course for frontend junior developers",
+                    	"content" : "Learn React Js at 12 hours",
+                    	"level" : "BEGINNER",
+                    	"language" : "ENGLISH",
+                    	"price" : "1200",
+                    	"categoryId" : 7,
+                    	"imageId" : 28
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTc3MzI1MzU4NiwiZXhwIjoxNzczMjU3MTg2fQ.AiJaddv6JWGOBbEMV-NW2lxoJoWeDmUSMtphDOlVQgA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/courses
+                name: Get All
+                meta:
+                  id: req_4aac92739e48433fbd236bbef1674f60
+                  created: 1770829386672
+                  modified: 1773254317420
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770829386672
+                method: GET
+                parameters:
+                  - name: search
+                    value: node
+                    description: ""
+                    disabled: true
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTc3MzI1MzU4NiwiZXhwIjoxNzczMjU3MTg2fQ.AiJaddv6JWGOBbEMV-NW2lxoJoWeDmUSMtphDOlVQgA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/courses/16
+                name: Delete
+                meta:
+                  id: req_99f2b806c6e444329dd47994b24cfca5
+                  created: 1770831756488
+                  modified: 1773259615648
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770831756488
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTc3MzI1OTU4OCwiZXhwIjoxNzczMjYzMTg4fQ.z624sZVojZh7GgtUKpuySSJzLFl_-S4ZW2h5yJvxJtw
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/courses/10
+                name: Put
+                meta:
+                  id: req_95a676dc4da747caa972cc51890eb914
+                  created: 1770831758432
+                  modified: 1772124819794
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770831758432
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"imageId" : 13
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3MjEyNDQwMSwiZXhwIjoxNzcyMTI4MDAxfQ.8GOaW7dFj7hz0dzfC2HqSAbSf7NmKBfdqwHY0GMZYp0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/courses/16
+                name: Get One
+                meta:
+                  id: req_25d1270db95243f5ad483e97e1c22818
+                  created: 1773254683753
+                  modified: 1773254969748
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773254683753
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTc3MzI1MzU4NiwiZXhwIjoxNzczMjU3MTg2fQ.AiJaddv6JWGOBbEMV-NW2lxoJoWeDmUSMtphDOlVQgA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Lecture
+            meta:
+              id: fld_86accf7d1a904a24a8d9bb598e3d0cd4
+              created: 1770924063236
+              modified: 1771524787189
+              sortKey: -1771524757324
+              description: ""
+            children:
+              - url: http://localhost:5000/api/instructor/lectures/courses/16
+                name: Add
+                meta:
+                  id: req_90db1615e24241068bdcb45720a2547e
+                  created: 1770924068562
+                  modified: 1773254249868
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1770924068562
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"title" : "What is JSX",
+                    	"order" : 4,
+                    	"mediaId" : 32
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.1.0
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTc3MzI1MzU4NiwiZXhwIjoxNzczMjU3MTg2fQ.AiJaddv6JWGOBbEMV-NW2lxoJoWeDmUSMtphDOlVQgA
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/lectures/1
+                name: Put
+                meta:
+                  id: req_56d6a64b812943209c35801e9dd62d97
+                  created: 1771271507404
+                  modified: 1772053608310
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1771271507404
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"mediaId" : 3
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/12.3.1
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3MjA1MzExMCwiZXhwIjoxNzcyMDU2NzEwfQ.wHsNXvKXfrV93AaP2BwkKrJm4wMdjidqcSzIAcxkdPo
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/lectures/22
+                name: Delete
+                meta:
+                  id: req_6b00fd6d317c4051b57fa0cbdbb4a40b
+                  created: 1771272069448
+                  modified: 1772960913265
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1771272069448
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.3.1
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mjk1ODkxOSwiZXhwIjoxNzcyOTYyNTE5fQ.mZZSazZoGnTRIWGe7xzBrGGkFFT01D0HV1zgGfJ4sHg
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/lectures/1
+                name: Get One
+                meta:
+                  id: req_c3b0119ada1f4b3d8ae9f30d631700f6
+                  created: 1771272072100
+                  modified: 1772053566922
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1771272072100
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.3.1
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3MjA1MzExMCwiZXhwIjoxNzcyMDU2NzEwfQ.wHsNXvKXfrV93AaP2BwkKrJm4wMdjidqcSzIAcxkdPo
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructor/lectures/courses/7
+                name: Get All with CourseId
+                meta:
+                  id: req_f6b77ce15172464aaf7e061dbd9affee
+                  created: 1771272074197
+                  modified: 1772053321573
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1771272074197
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.3.1
+                    description: ""
+                    disabled: false
+                authentication:
+                  type: bearer
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3MjA1MzExMCwiZXhwIjoxNzcyMDU2NzEwfQ.wHsNXvKXfrV93AaP2BwkKrJm4wMdjidqcSzIAcxkdPo
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+      - name: Public
+        meta:
+          id: fld_e6831e07a6e746ee9c7eaa73c525efb4
+          created: 1773255411903
+          modified: 1773255411903
+          sortKey: -1773255411903
+          description: ""
+        children:
+          - name: Category
+            meta:
+              id: fld_85c7a50d1da84842bc0d87f036186ba1
+              created: 1773258144032
+              modified: 1773258144032
+              sortKey: -1773258144032
+              description: ""
+            children:
+              - url: http://localhost:5000/api/categories
+                name: Get All
+                meta:
+                  id: req_72a6699ae8ee4053a07215e6613e519b
+                  created: 1773258602839
+                  modified: 1773258683092
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773258602839
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Course
+            meta:
+              id: fld_1c6d33aa76e64bd1b87fb6167b6dc595
+              created: 1773258164178
+              modified: 1773258164178
+              sortKey: -1773258164178
+              description: ""
+            children:
+              - url: http://localhost:5000/api/courses/16
+                name: Get One
+                meta:
+                  id: req_b04e1f292d304db8820ed3f54ea59329
+                  created: 1773258597754
+                  modified: 1773259239223
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773258597754
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/courses
+                name: Get All
+                meta:
+                  id: req_c46acebb471445bdb03160083a4655b7
+                  created: 1773258600308
+                  modified: 1773258730235
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773258600308
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Instructor
+            meta:
+              id: fld_b61ac46858b04063a44ea1cd9ee75eae
+              created: 1773258175498
+              modified: 1773258175498
+              sortKey: -1773258175498
+              description: ""
+            children:
+              - url: http://localhost:5000/api/instructors/2
+                name: Get One
+                meta:
+                  id: req_2075934cce8c40a7964683a9b41e341c
+                  created: 1773258571529
+                  modified: 1773259203392
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773258571529
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:5000/api/instructors
+                name: Get All
+                meta:
+                  id: req_cc0c7741443b4219b597141459c61f71
+                  created: 1773258575221
+                  modified: 1773258777143
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1773258575221
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/12.4.0
+                    description: ""
+                    disabled: false
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_dd0ba6dece58d9647856a54395d90a125dfe425b
+    created: 1768738825396
+    modified: 1768738825396
+environments:
+  name: Base Environment
+  meta:
+    id: env_dd0ba6dece58d9647856a54395d90a125dfe425b
+    created: 1768738825393
+    modified: 1768738825393
+    isPrivate: false
+spec:
+  meta:
+    id: spc_1f82e6826688493ebbc0c7e176989428
+    created: 1768738825390
+    modified: 1768746882894

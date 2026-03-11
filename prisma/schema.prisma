@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+  INSTRUCTOR
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum Language {
+  ENGLISH
+  RUSSIAN
+  TURKMEN
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model User {
+  id              Int               @id @default(autoincrement())
+  email           String            @unique
+  name            String
+  password        String
+  role            Role              @default(STUDENT)
+  courses         Course[]          @relation("InstructorCourses")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  enrollments     Enrollment[]
+  payments        Payment[]
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String
+  slug        String     @unique
+  isActive    Boolean    @default(true)
+  description String
+  parentId    Int?
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  courses     Course[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@unique([name, parentId])
+}
+
+model Media {
+  id        Int       @id @default(autoincrement())
+  filename  String
+  path      String
+  mimeType  String
+  type      MediaType
+  size      Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  lectureId Int?      @unique
+  lecture   Lecture?  @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+  courseId  Int?      @unique
+  course    Course?   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model Course {
+  id           Int          @id @default(autoincrement())
+  title        String
+  slug         String       @unique
+  description  String
+  content      String
+  level        Level
+  language     Language
+  price        Decimal      @db.Decimal(10, 2)
+  isPublished  Boolean      @default(false)
+  image        Media?
+  categoryId   Int
+  category     Category     @relation(fields: [categoryId], references: [id])
+  instructorId Int
+  instructor   User         @relation("InstructorCourses", fields: [instructorId], references: [id])
+  curriculum   Lecture[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  enrollments  Enrollment[]
+  payments     Payment[]
+}
+
+model Lecture {
+  id        Int               @id @default(autoincrement())
+  title     String
+  free      Boolean           @default(false)
+  order     Int
+  courseId  Int
+  course    Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  media     Media?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@unique([courseId, order])
+}
+
+model Enrollment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  courseId  Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model Payment {
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  courseId  Int
+  amount    Decimal       @db.Decimal(10, 2)
+  status    PaymentStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id])
+  course    Course        @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId])
+}
