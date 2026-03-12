@@ -27,6 +27,7 @@ export const getAllUsersWithRole = async (
           contains: search,
           mode: "insensitive",
         },
+        isDeleted: false,
       },
       skip,
       take: limit,
@@ -38,6 +39,7 @@ export const getAllUsersWithRole = async (
           contains: search,
           mode: "insensitive",
         },
+        isDeleted: false,
       },
     }),
   ]);

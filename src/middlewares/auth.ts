@@ -19,7 +19,7 @@ const authMiddleware = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const authHeader = req.headers.authorization!;
+  const authHeader = req.headers.authorization;
   if (!authHeader) {
     return next(
       new UnauthorizedException("Unauthorized", ErrorCode.UNAUTHORIZED),
@@ -27,7 +27,7 @@ const authMiddleware = async (
   }
   const token = authHeader.split(" ")[1]!;
   if (!token) {
-    next(new UnauthorizedException("Unauthorized", ErrorCode.UNAUTHORIZED));
+    return next(new UnauthorizedException("Unauthorized", ErrorCode.UNAUTHORIZED));
   }
   try {
     const payload = jwt.verify(token, JWT_SECRET) as any;
@@ -35,7 +35,15 @@ const authMiddleware = async (
       where: { id: payload.userId },
     });
     if (!user) {
-      next(new UnauthorizedException("Unauthorized", ErrorCode.UNAUTHORIZED));
+      return next(new UnauthorizedException("Unauthorized", ErrorCode.UNAUTHORIZED));
+    }
+    if (user?.isDeleted) {
+      return next(
+        new UnauthorizedException(
+          "User account has been deleted",
+          ErrorCode.USER_DELETED,
+        ),
+      );
     }
     req.user = user!;
     next();

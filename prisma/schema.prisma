@@ -48,6 +48,9 @@ model User {
   updatedAt       DateTime          @updatedAt
   enrollments     Enrollment[]
   payments        Payment[]
+  resetCode       String?           @unique
+  resetCodeExpiry DateTime?
+  isDeleted       Boolean           @default(false)
 }
 
 model Category {

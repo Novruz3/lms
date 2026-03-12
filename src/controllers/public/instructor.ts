@@ -20,6 +20,7 @@ export const getAllInstructors = async (
           contains: search,
           mode: "insensitive",
         },
+        isDeleted: false,
       },
       select: {
         id: true,
@@ -36,6 +37,7 @@ export const getAllInstructors = async (
           contains: search,
           mode: "insensitive",
         },
+        isDeleted: false,
       },
     }),
   ]);
