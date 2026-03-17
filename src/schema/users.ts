@@ -11,6 +11,12 @@ export const loginSchema = z.object({
   password: z.string().min(6),
 });
 
+export const editMeSchema = z.object({
+  name: z.string().min(2).optional(),
+  password : z.string().min(6).optional(),
+  imageId : z.coerce.number().int().optional(),
+})
+
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });

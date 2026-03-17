@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import {
+  editMeSchema,
   forgotPasswordSchema,
   loginSchema,
   resetPasswordSchema,
@@ -13,6 +14,8 @@ import { compareSync, hashSync } from "bcrypt";
 import { NotFoundException } from "../exceptions/not-found";
 import * as jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../secrets";
+import fs from "fs";
+import path from "path";
 
 export const signUp = async (
   req: Request,
@@ -83,8 +86,88 @@ export const login = async (
 };
 
 export const me = async (req: Request, res: Response, next: NextFunction) => {
-  const user = req.user;
+  const userId = req.user?.id!;
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      avatar: {
+        select: {
+          path: true,
+        },
+      },
+    },
+  });
   const { password: _, ...safeUser } = user!;
+  res.status(200).json({ user: safeUser });
+};
+
+export const editMe = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const data = editMeSchema.parse(req.body);
+  const userId = req.user!.id;
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    include: { avatar: true },
+  });
+  if (!user) {
+    throw new NotFoundException("User not found", ErrorCode.USER_NOT_FOUND);
+  }
+  if (data.password) {
+    data.password = hashSync(data.password, 10);
+  }
+  if (data.imageId) {
+    const media = await prisma.media.findUnique({
+      where: { id: Number(data.imageId) },
+    });
+    if (!media) {
+      throw new NotFoundException("Image not found", ErrorCode.IMAGE_NOT_FOUND);
+    }
+    if (media.type !== "IMAGE") {
+      throw new BadRequestException(
+        "Invalid media type",
+        ErrorCode.INVALID_FILE_TYPE,
+      );
+    }
+    if (media.courseId || media.userId) {
+      throw new BadRequestException(
+        "Invalid media",
+        ErrorCode.MEDIA_ALREADY_USED,
+      );
+    }
+    const existingAvatar = await prisma.media.findFirst({
+      where: { userId, type: "IMAGE" },
+    });
+    if (existingAvatar) {
+      const filePath = path.join(process.cwd(), existingAvatar.path);
+      if (fs.existsSync(filePath)) {
+        await fs.promises.unlink(filePath);
+      }
+      await prisma.media.delete({
+        where: { id: existingAvatar.id },
+      });
+    }
+    const mediaId = data.imageId;
+    delete data.imageId;
+    await prisma.media.update({
+      where: { id: mediaId },
+      data: {
+        userId,
+      },
+    });
+  }
+  const editedData = Object.fromEntries(
+    Object.entries(data).filter(([_, value]) => value !== undefined),
+  );
+  const editedUser = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      ...editedData,
+    },
+  });
+  const { password: __, ...safeUser } = editedUser;
   res.status(200).json({ user: safeUser });
 };
 

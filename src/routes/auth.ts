@@ -8,6 +8,7 @@ import {
   resetPassword,
   verifyResetCode,
   deleteAccount,
+  editMe,
 } from "../controllers/auth.cont";
 import authMiddleware from "../middlewares/auth";
 
@@ -16,6 +17,7 @@ const authRoutes: Router = Router();
 authRoutes.post("/signup", errorHandler(signUp));
 authRoutes.post("/login", errorHandler(login));
 authRoutes.get("/me", [authMiddleware], errorHandler(me));
+authRoutes.put("/edit-me", [authMiddleware], errorHandler(editMe));
 authRoutes.post("/forgot-password", errorHandler(forgotPassword));
 authRoutes.post("/verify-reset-code", errorHandler(verifyResetCode));
 authRoutes.post("/reset-password", errorHandler(resetPassword));
