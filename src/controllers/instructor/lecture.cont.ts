@@ -2,10 +2,16 @@ import { NextFunction, Request, Response } from "express";
 import prisma from "../../lib/prisma";
 import { NotFoundException } from "../../exceptions/not-found";
 import { ErrorCode } from "../../exceptions/root";
-import { CreateLectureInput, createLectureSchema, UpdateLectureInput, updateLectureSchema } from "../../schema/lecture";
+import {
+  CreateLectureInput,
+  createLectureSchema,
+  UpdateLectureInput,
+  updateLectureSchema,
+} from "../../schema/lecture";
 import fs from "fs";
 import path from "path";
 import { BadRequestException } from "../../exceptions/bad-requests";
+import { getIO } from "../../socket";
 
 export const addLecture = async (
   req: Request,
@@ -70,6 +76,24 @@ export const addLecture = async (
     });
     return lecture;
   });
+  const students = await prisma.enrollment.findMany({
+    where: { courseId: course.id },
+    include: { user: true },
+  });
+  await prisma.notification.createMany({
+    data: students.map((s) => ({
+      userId: s.userId,
+      title: "New Lecture",
+      message: `New lecture added to "${course.title}"`,
+    })),
+  });
+  const io = getIO();
+  for (const s of students) {
+    io.to(`user-${s.userId}`).emit("notification", {
+      title: "New Lecture",
+      message: `New lecture added to "${course.title}"`,
+    });
+  }
   res.status(201).json({ message: "Lecture created successfully", lecture });
 };
 
@@ -155,7 +179,7 @@ export const updateLecture = async (
     });
   }
   const updateData = Object.fromEntries(
-    Object.entries(data).filter(([_, value]) => value !== undefined)
+    Object.entries(data).filter(([_, value]) => value !== undefined),
   );
   const updatedLecture = await prisma.lecture.update({
     where: { id: Number(lectureId) },

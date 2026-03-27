@@ -2,11 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import prisma from "../../lib/prisma";
 import { ErrorCode } from "../../exceptions/root";
 import { NotFoundException } from "../../exceptions/not-found";
-import {
-  EditPaymentInput,
-  editPaymentSchema,
-} from "../../schema/payment";
+import { EditPaymentInput, editPaymentSchema } from "../../schema/payment";
 import { BadRequestException } from "../../exceptions/bad-requests";
+import { getIO } from "../../socket";
 
 export const createPayment = async (
   req: Request,
@@ -41,6 +39,22 @@ export const createPayment = async (
       userId: studentId,
       courseId: Number(courseId),
     },
+  });
+  await prisma.notification.create({
+    data: {
+      userId: course.instructorId,
+      title: "New Payment Request",
+      message: `Student requested to buy ${course.title}`,
+    },
+  });
+  const io = getIO();
+  io.to(`user-${course.instructorId}`).emit("notification", {
+    title: "New Payment Request",
+    message: `Student requested to buy ${course.title}`,
+  });
+  io.to(`user-${studentId}`).emit("notification", {
+    title: "Payment Created",
+    message: `Your payment request for ${course.title} has been created`,
   });
   res.status(200).json({
     message: "Course purchased successfully",
