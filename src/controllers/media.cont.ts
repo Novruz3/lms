@@ -15,24 +15,44 @@ export const uploadMedia = async (
     throw new NotFoundException("File is required", ErrorCode.FILE_REQUIRED);
   }
   const { mimetype, filename, path: filePath, size } = req.file;
+  const uploadType = req.query.type as string;
   let type: "IMAGE" | "VIDEO" | "DOCUMENT";
   let finalPath = filePath;
   let finalFilename = filename;
   if (mimetype.startsWith("image")) {
     type = "IMAGE";
+    let width = 800;
+    let height: number | null = null;
+    if (uploadType === "avatar") {
+      width = 200;
+      height = 200;
+    } else if (uploadType === "course") {
+      width = 800;
+      height = 600;
+    } else if (uploadType === "banner") {
+      width = 1200;
+      height = 400;
+    }
     const newFilename = `resized-${Date.now()}.jpeg`;
     const newPath = path.join(path.dirname(filePath), newFilename);
-    await sharp(filePath)
-      .resize(800)
+    let sharpInstance = sharp(filePath);
+    if (height) {
+      sharpInstance = sharpInstance.resize(width, height, {
+        fit: "cover",
+      });
+    } else {
+      sharpInstance = sharpInstance.resize(width);
+    }
+    await sharpInstance
       .jpeg({ quality: 80 })
       .toFile(newPath);
     fs.unlinkSync(filePath);
     finalPath = newPath;
     finalFilename = newFilename;
-  }
+  } 
   else if (mimetype.startsWith("video")) {
     type = "VIDEO";
-  }
+  } 
   else {
     type = "DOCUMENT";
   }

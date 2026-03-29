@@ -131,7 +131,7 @@ export const editMe = async (
         ErrorCode.INVALID_FILE_TYPE,
       );
     }
-    if (media.courseId || media.userId) {
+    if (media.courseId || media.userId || media.bannerId) {
       throw new BadRequestException(
         "Invalid media",
         ErrorCode.MEDIA_ALREADY_USED,

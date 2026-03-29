@@ -5,6 +5,7 @@ import authMiddleware from "../../middlewares/auth";
 import { adminMiddleware } from "../../middlewares/admin";
 import courseRoutes from "./course";
 import announcementRoutes from "./announcement";
+import bannerRoutes from "./banner";
 
 const adminRouter = Router();
 
@@ -14,5 +15,6 @@ adminRouter.use("/categories", categoryRoutes);
 adminRouter.use("/users", userRoutes);
 adminRouter.use("/courses", courseRoutes);
 adminRouter.use("/announcements", announcementRoutes);
+adminRouter.use("/banners", bannerRoutes);
 
 export default adminRouter;

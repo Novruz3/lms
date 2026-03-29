@@ -40,7 +40,7 @@ export const addCourse = async (
       ErrorCode.INVALID_FILE_TYPE,
     );
   }
-  if (image.courseId || image.userId) {
+  if (image.courseId || image.userId || image.bannerId) {
     throw new BadRequestException(
       "This image is already attached to another course",
       ErrorCode.MEDIA_ALREADY_USED,
@@ -105,7 +105,7 @@ export const updateCourse = async (
         ErrorCode.INVALID_FILE_TYPE,
       );
     }
-    if (image.courseId || image.userId) {
+    if (image.courseId || image.userId || image.bannerId) {
       throw new BadRequestException(
         "This image is already attached to another course",
         ErrorCode.MEDIA_ALREADY_USED,

@@ -13,7 +13,7 @@ const fileFilter = (
   cb: multer.FileFilterCallback,
 ) => {
   const type = req.query.type;
-  if (type === "avatar" || type === "course") {
+  if (type === "avatar" || type === "course" || type === "banner") {
     if (!file.mimetype.startsWith("image/")) {
       throw new InternalException(
         "Only image files allowed",
@@ -51,6 +51,8 @@ const storage = multer.diskStorage({
       uploadPath += "avatars";
     } else if (type === "course") {
       uploadPath += "courses";
+    } else if (type === "banner") {
+      uploadPath += "banners";
     } else if (type === "lecture") {
       if (file.mimetype.startsWith("video/")) {
         uploadPath += "lectures/videos";

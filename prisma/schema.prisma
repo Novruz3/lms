@@ -88,6 +88,8 @@ model Media {
   course    Course?   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   userId    Int?      @unique
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bannerId  Int?      @unique
+  banner    Banner?   @relation(fields: [bannerId], references: [id], onDelete: Cascade)
 }
 
 model Course {
@@ -197,4 +199,14 @@ model Comment {
   replies   Comment[] @relation("CommentReplies")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model Banner {
+  id        Int      @id @default(autoincrement())
+  title     String
+  image     Media?
+  link      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
