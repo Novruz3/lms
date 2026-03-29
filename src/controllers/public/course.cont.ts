@@ -59,6 +59,14 @@ export const getCourseById = async (req: Request, res: Response) => {
           order: true,
           free: true,
         },
+        include:{
+          media: true,
+          lectureProgresses : {
+            select : {
+              isCompleted : true,
+            }
+          }
+        }
       },
       comments: {
         select: {

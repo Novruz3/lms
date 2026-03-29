@@ -38,23 +38,24 @@ enum PaymentStatus {
 }
 
 model User {
-  id              Int            @id @default(autoincrement())
-  email           String         @unique
-  name            String
-  password        String
-  role            Role           @default(STUDENT)
-  avatar          Media?
-  courses         Course[]       @relation("InstructorCourses")
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  enrollments     Enrollment[]
-  payments        Payment[]
-  resetCode       String?        @unique
-  resetCodeExpiry DateTime?
-  isDeleted       Boolean        @default(false)
-  likedCourses    LikedCourse[]
-  notifications   Notification[]
-  comments        Comment[]
+  id                Int               @id @default(autoincrement())
+  email             String            @unique
+  name              String
+  password          String
+  role              Role              @default(STUDENT)
+  avatar            Media?
+  courses           Course[]          @relation("InstructorCourses")
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  enrollments       Enrollment[]
+  payments          Payment[]
+  resetCode         String?           @unique
+  resetCodeExpiry   DateTime?
+  isDeleted         Boolean           @default(false)
+  likedCourses      LikedCourse[]
+  notifications     Notification[]
+  comments          Comment[]
+  lectureProgresses LectureProgress[]
 }
 
 model Category {
@@ -118,15 +119,16 @@ model Course {
 }
 
 model Lecture {
-  id        Int      @id @default(autoincrement())
-  title     String
-  free      Boolean  @default(false)
-  order     Int
-  courseId  Int
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  media     Media?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                Int               @id @default(autoincrement())
+  title             String
+  free              Boolean           @default(false)
+  order             Int
+  courseId          Int
+  course            Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  media             Media?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  lectureProgresses LectureProgress[]
 
   @@unique([courseId, order])
 }
@@ -209,4 +211,17 @@ model Banner {
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model LectureProgress {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  lectureId   Int
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lecture     Lecture  @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lectureId])
 }
