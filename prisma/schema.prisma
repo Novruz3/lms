@@ -54,6 +54,7 @@ model User {
   isDeleted       Boolean        @default(false)
   likedCourses    LikedCourse[]
   notifications   Notification[]
+  comments        Comment[]
 }
 
 model Category {
@@ -111,6 +112,7 @@ model Course {
   updatedAt    DateTime      @updatedAt
   enrollments  Enrollment[]
   payments     Payment[]
+  comments     Comment[]
 }
 
 model Lecture {
@@ -181,4 +183,18 @@ model Announcement {
   message   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  content   String
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId  Int
+  course    Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  parentId  Int?
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }

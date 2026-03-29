@@ -60,6 +60,13 @@ export const getCourseById = async (req: Request, res: Response) => {
           free: true,
         },
       },
+      comments: {
+        select: {
+          id: true,
+          content: true,
+          parentId : true
+        },
+      },
     },
   });
   if (!course) {
