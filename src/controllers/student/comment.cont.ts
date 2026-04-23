@@ -43,7 +43,7 @@ export const addComment = async (
       content: data.content,
       userId: userId!,
       courseId: Number(courseId),
-      parentId: data.parentId!,
+      ...(data.parentId != null ? { parentId: data.parentId } : {}),
     },
   });
   if (data.parentId) {
@@ -86,6 +86,12 @@ export const updateComment = async (
       ErrorCode.COMMENT_NOT_FOUND,
     );
   }
+  if (comment.userId !== req.user?.id) {
+    throw new NotFoundException(
+      "Comment with the given ID does not exist",
+      ErrorCode.COMMENT_NOT_FOUND,
+    );
+  }
   const updatedComment = await prisma.comment.update({
     where: {
       id: Number(id),
@@ -113,6 +119,12 @@ export const deleteComment = async (
     },
   });
   if (!comment) {
+    throw new NotFoundException(
+      "Comment with the given ID does not exist",
+      ErrorCode.COMMENT_NOT_FOUND,
+    );
+  }
+  if (comment.userId !== req.user?.id) {
     throw new NotFoundException(
       "Comment with the given ID does not exist",
       ErrorCode.COMMENT_NOT_FOUND,

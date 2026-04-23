@@ -26,6 +26,7 @@ export const getAllInstructors = async (
         id: true,
         name: true,
         email: true,
+        avatar: { select: { id: true, path: true } },
       },
       skip,
       take: limit,
@@ -56,12 +57,27 @@ export const getInstructorDetails = async (
   const instructor = await prisma.user.findFirst({
     where: {
       id: Number(id),
-      role : "INSTRUCTOR"
+      role: "INSTRUCTOR",
+      isDeleted: false,
     },
     select: {
       id: true,
       name: true,
       email: true,
+      avatar: { select: { id: true, path: true } },
+      courses: {
+        where: { isPublished: true },
+        orderBy: { createdAt: "desc" },
+        take: 50,
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          description: true,
+          price: true,
+          image: { select: { id: true, path: true } },
+        },
+      },
     },
   });
   if (!instructor) {

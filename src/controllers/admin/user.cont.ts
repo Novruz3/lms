@@ -66,5 +66,6 @@ export const getUserDetails = async (
       ErrorCode.USER_NOT_FOUND,
     );
   }
-  res.status(200).json({ data: user });
+  const { password: _, ...resUser } = user;
+  res.status(200).json({ data: resUser });
 };

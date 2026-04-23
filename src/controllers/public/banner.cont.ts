@@ -8,9 +8,11 @@ export const getAllBanners = async (
 ) => {
   const [banners, total] = await prisma.$transaction([
     prisma.banner.findMany({
+      where: { isActive: true },
       orderBy: { createdAt: "desc" },
+      include: { image: true },
     }),
-    prisma.banner.count(),
+    prisma.banner.count({ where: { isActive: true } }),
   ]);
   res.status(200).json({ data: banners, total });
 };

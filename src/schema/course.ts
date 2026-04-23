@@ -11,6 +11,7 @@ export const createCourseSchema = z.object({
   price: z.string().regex(/^\d+(\.\d{2})?$/),
   categoryId: z.coerce.number().int(),
   imageId: z.coerce.number().int(),
+  isPublished: z.boolean().optional(),
 })
 
 export const updateCourseSchema = z.object({

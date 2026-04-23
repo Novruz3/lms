@@ -8,9 +8,10 @@ export const getAllCategories = async (
 ) => {
   const [categories, total] = await prisma.$transaction([
     prisma.category.findMany({
+      where: { isActive: true },
       orderBy: { createdAt: "desc" },
     }),
-    prisma.category.count(),
+    prisma.category.count({ where: { isActive: true } }),
   ]);
   res.status(200).json({ data: categories, total });
 };

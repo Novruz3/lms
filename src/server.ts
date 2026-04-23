@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 import { Express } from "express";
 import { PORT } from "./secrets";
@@ -19,6 +20,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use("/api", rootRouter);
 app.use(errorMiddleware);
 

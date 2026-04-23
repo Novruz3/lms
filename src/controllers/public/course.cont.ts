@@ -15,10 +15,11 @@ export const getAllCourses = async (
   const categoryId = req.query.categoryId
     ? Number(req.query.categoryId)
     : undefined;
-  const intructorId = req.query.instructorId
-    ? Number(req.query.categoryId)
+  const instructorId = req.query.instructorId
+    ? Number(req.query.instructorId)
     : undefined;
   const where: any = {
+    isPublished: true,
     title: {
       contains: search,
       mode: "insensitive",
@@ -27,8 +28,8 @@ export const getAllCourses = async (
   if (categoryId) {
     where.categoryId = categoryId;
   }
-  if (intructorId) {
-    where.instructorId = intructorId;
+  if (instructorId) {
+    where.instructorId = instructorId;
   }
   const [courses, total] = await prisma.$transaction([
     prisma.course.findMany({
@@ -48,31 +49,34 @@ export const getAllCourses = async (
 
 export const getCourseById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const course = await prisma.course.findUnique({
-    where: { id: Number(id) },
+  const course = await prisma.course.findFirst({
+    where: { id: Number(id), isPublished: true },
     include: {
       image: true,
+      instructor: {
+        select: { id: true, name: true, email: true },
+      },
+      category: { select: { id: true, name: true, slug: true } },
       curriculum: {
-        select: {
-          id: true,
-          title: true,
-          order: true,
-          free: true,
+        orderBy: { order: "asc" },
+        include: {
+          media: { select: { id: true, type: true, path: true, filename: true } },
+          lectureProgresses: {
+            select: { isCompleted: true },
+          },
         },
-        include:{
-          media: true,
-          lectureProgresses : {
-            select : {
-              isCompleted : true,
-            }
-          }
-        }
       },
       comments: {
-        select: {
-          id: true,
-          content: true,
-          parentId : true
+        where: { parentId: null },
+        orderBy: { createdAt: "desc" },
+        include: {
+          user: { select: { id: true, name: true } },
+          replies: {
+            orderBy: { createdAt: "asc" },
+            include: {
+              user: { select: { id: true, name: true } },
+            },
+          },
         },
       },
     },
